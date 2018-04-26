@@ -1,0 +1,2 @@
+# pydicom_rtstruct_contour_mapping
+I can open DICOM files containing CT-scans using pydicom. I can use a DICOM viewer tool (like dicompyler or MiM) to look at the contours. However, I cannot view the aforementioned contours in pydicom. The goal of pydicom_rtstruct_contour_mapping tool is to enable myself and others to match the contours with the CT-scan slices, to be able to view the scans with the contours overlayed on top and to be able to select the pixels using a canonical data scientist's toolbox such as numpy and matplotlib.
