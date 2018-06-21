@@ -43,12 +43,24 @@ file_of_slice_with_contours = pydicom.dcmread(find_correct_image(contour_sequenc
 # Image
 pixel_array = file_of_slice_with_contours.pixel_array
 
+# Some Metadata : For Converting Contours to Pixels
+pixel_spacing = file_of_slice_with_contours.PixelSpacing
+x_gap = pixel_spacing[0]
+y_gap = pixel_spacing[1]
+
+image_position_starting_point = file_of_slice_with_contours.\
+                                    ImagePositionPatient
+x_start = float(image_position_starting_point[0])
+y_start = float(image_position_starting_point[0])
+
 # Contours
 contours = contour_sequence.ContourData
 x_coords_of_contours = [ float(number) for number in contours[0::3] ]
-y_coords_of_contours = [ float(number) for number in contours[1::3] ])
+y_coords_of_contours = [ float(number) for number in contours[1::3] ]
+x_coords_of_contours = np.array(x_coords_of_contours)
+y_coords_of_contours = np.array(y_coords_of_contours)
 
-# Preprocessing the Contours
-
+x_pixel_nos = (x_coords_of_contours-x_start)/x_gap
+y_pixel_nos = (y_coords_of_contours-y_start)/y_gap
 
 
