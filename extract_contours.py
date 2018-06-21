@@ -63,11 +63,6 @@ y_coords_of_contours = np.array(y_coords_of_contours)
 x_pixel_nos = (x_coords_of_contours-x_start)/x_gap
 y_pixel_nos = (y_coords_of_contours-y_start)/y_gap
 
-plt.figure()
-plt.imshow(pixel_array, cmap='bone')
-plt.plot(x_pixel_nos, y_pixel_nos, color='r')
-plt.figure()
-plt.show()
 
 # Extracting the Pixels that Fall Within
 temp_list = []
@@ -85,4 +80,17 @@ points = np.hstack((xv.reshape((-1,1)), yv.reshape((-1,1))))
 
 path = matplotlib.path.Path(polygon)
 mask = path.contains_points(points)
+
+x_coords_of_points_within_contours = points[mask, 0]
+y_coords_of_points_within_contours = points[mask, 1]
+
+
+plt.figure()
+plt.imshow(pixel_array, cmap='bone')
+#plt.plot(x_pixel_nos, y_pixel_nos, color='r')
+plt.plot(x_coords_of_points_within_contours, 
+         y_coords_of_points_within_contours, color='g')
+#plt.plot(y_coords_of_points_within_contours, 
+plt.figure()
+plt.show()
 
