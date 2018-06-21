@@ -94,3 +94,31 @@ plt.plot(x_coords_of_points_within_contours,
 plt.figure()
 plt.show()
 
+#find average pixel brightness inside contours
+#create a matrix so that when you multiply element by element it shows
+pixel_list = []
+for x_coord, y_coord in zip(x_coords_of_points_within_contours,
+                            y_coords_of_points_within_contours):
+    pixel_list.append([x_coord, y_coord])
+
+mask_array = np.zeros([512,512])
+
+for element in pixel_list:
+    mask_array[element[0], element[1]] = 1
+
+print(mask_array.sum().sum())
+
+
+pixel_list = np.array(pixel_list)
+
+just_the_roi_array = np.multiply(mask_array, pixel_array)
+
+print(just_the_roi_array.sum().sum()/mask_array.sum().sum())
+
+plt.figure()
+plt.imshow(pixel_array, cmap='bone')
+plt.plot(x_pixel_nos, y_pixel_nos, color='r')
+plt.figure()
+plt.show()
+
+
